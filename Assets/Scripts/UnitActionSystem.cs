@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class UnitActionSystem : MonoBehaviour
 {
+
     public static UnitActionSystem Instance { get; private set; }
 
     public event EventHandler OnSelectedUnitChange;
 
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
-
 
     private void Awake()
     {
@@ -39,11 +37,9 @@ public class UnitActionSystem : MonoBehaviour
         {
             if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
             {
-
                 SetSelectedUnit(unit);
                 return true;
             }
-
         }
         return false;
     }

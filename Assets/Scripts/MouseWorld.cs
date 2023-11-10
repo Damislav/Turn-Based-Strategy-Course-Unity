@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseWorld : MonoBehaviour
 {
-
     private static MouseWorld instance;
 
     [SerializeField] private LayerMask mousePlaneLayerMask;
@@ -13,7 +10,6 @@ public class MouseWorld : MonoBehaviour
     {
         instance = this;
     }
-
 
     public static Vector3 GetPosition()
     {
