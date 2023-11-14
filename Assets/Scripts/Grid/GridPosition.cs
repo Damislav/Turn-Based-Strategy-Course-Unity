@@ -1,5 +1,3 @@
-
-
 using System;
 
 public struct GridPosition : IEquatable<GridPosition>
@@ -38,5 +36,15 @@ public struct GridPosition : IEquatable<GridPosition>
     public bool Equals(GridPosition other)
     {
         return this == other;
+    }
+
+    // overide custom struct
+    public static GridPosition operator +(GridPosition a, GridPosition b)
+    {
+        return new GridPosition(a.x + b.x, a.z + b.z);
+    }
+    public static GridPosition operator -(GridPosition a, GridPosition b)
+    {
+        return new GridPosition(a.x - b.x, a.z - b.z);
     }
 }
