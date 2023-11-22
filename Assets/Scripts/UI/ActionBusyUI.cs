@@ -1,0 +1,34 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ActionBusyUI : MonoBehaviour
+{
+    void Start()
+    {
+        UnitActionSystem.Instance.OnBusyChanged += UnitActionSystem_OnBusyChanged;
+    }
+
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void UnitActionSystem_OnBusyChanged(object sender, bool isBusy)
+    {
+        if (isBusy)
+        {
+            Show();
+        }
+        else
+        {
+            Hide();
+        }
+    }
+}
