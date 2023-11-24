@@ -8,6 +8,8 @@ public class ActionBusyUI : MonoBehaviour
     void Start()
     {
         UnitActionSystem.Instance.OnBusyChanged += UnitActionSystem_OnBusyChanged;
+
+        Hide();
     }
 
 

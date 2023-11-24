@@ -9,13 +9,13 @@ public class UnitActionSystem : MonoBehaviour
     public event EventHandler OnSelectedUnitChange;
     public event EventHandler OnSelectedActionChange;
     public event EventHandler<bool> OnBusyChanged;
+    public event EventHandler OnActionStarted;
 
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
 
     private BaseAction selectedAction;
     private bool isBusy;
-
 
     private void Awake()
     {
@@ -39,6 +39,12 @@ public class UnitActionSystem : MonoBehaviour
             return;
         }
 
+        //if its not player turn return it
+        if (!TurnSystem.Instance.IsPlayerTurn())
+        {
+            return;
+        }
+
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
@@ -53,15 +59,24 @@ public class UnitActionSystem : MonoBehaviour
 
     private void HandleSelectedAction()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             //get mouse position based on world position
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
-            if (selectedAction.IsValidActionPosition(mouseGridPosition))
+
+            if (!selectedAction.IsValidActionPosition(mouseGridPosition))
             {
-                SetBusy();
-                selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+                return;
             }
+            //can you afford selected action
+            if (!selectedUnit.TrySpendActionPointsToTakeAction(selectedAction))
+            {
+                return;
+            }
+            SetBusy();
+            selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+            OnActionStarted?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -77,6 +92,11 @@ public class UnitActionSystem : MonoBehaviour
                     if (unit == selectedAction)
                     {
                         //Unit is already selected
+                        return false;
+                    }
+
+                    if (unit.isEnemy)
+                    {  //if its enemy dont allow to select
                         return false;
                     }
                     SetSelectedUnit(unit);
@@ -127,4 +147,7 @@ public class UnitActionSystem : MonoBehaviour
     {
         return selectedAction;
     }
+
+
+
 }

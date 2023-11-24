@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinAction : BaseAction
+public class ShootAction : BaseAction
 {
     private float totalSpinAmount;
+
+    private void Start()
+    {
+
+    }
 
     private void Update()
     {
@@ -26,16 +31,9 @@ public class SpinAction : BaseAction
         }
     }
 
-    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
-    {
-        this.onActionComplete = onActionComplete;
-        isActive = true;
-        totalSpinAmount = 0f;
-    }
-
     public override string GetActionName()
     {
-        return "Spin";
+        return "Shoot";
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()
@@ -44,9 +42,13 @@ public class SpinAction : BaseAction
         return new List<GridPosition>{
             unitGridPosition
         };
+
     }
-    public override int GetActionPointsCost()
+
+    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        return 2;
+        this.onActionComplete = onActionComplete;
+        isActive = true;
+        totalSpinAmount = 0f;
     }
 }
