@@ -95,7 +95,7 @@ public class UnitActionSystem : MonoBehaviour
                         return false;
                     }
 
-                    if (unit.isEnemy)
+                    if (unit.IsEnemy())
                     {  //if its enemy dont allow to select
                         return false;
                     }

@@ -27,10 +27,7 @@ public class UnitActionSystemUI : MonoBehaviour
         UpdateActionPoints();
         CreateUnitActionButtons();
         UpdateSelectedVisual();
-
-
     }
-
 
     private void UnitActionSystem_OnSelectedUnitChanged(object sender, EventArgs e)
     {

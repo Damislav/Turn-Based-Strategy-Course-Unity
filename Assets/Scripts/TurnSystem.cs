@@ -15,7 +15,6 @@ public class TurnSystem : MonoBehaviour
 
     void Awake()
     {
-
         if (Instance != null)
         {
             Debug.Log("Theres more than one TurnSystem script" + transform + " - " + Instance);
@@ -24,7 +23,6 @@ public class TurnSystem : MonoBehaviour
         }
         Instance = this;
     }
-
 
     public void NextTurn()
     {
@@ -35,6 +33,7 @@ public class TurnSystem : MonoBehaviour
 
 
     }
+
     public int GetTurnNumber()
     {
         return turnNumber;
