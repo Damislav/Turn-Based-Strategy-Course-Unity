@@ -20,10 +20,8 @@ public class ShootAction : BaseAction
         Cooloff,
     }
 
-    [SerializeField] private LayerMask obstaclesLayerMask;
-
     private State state;
-    private int maxShootDistance = 7;
+    [SerializeField] private int maxShootDistance = 7;
     private float stateTimer;
     private Unit targetUnit;
     private bool canShootBullet;
@@ -117,11 +115,7 @@ public class ShootAction : BaseAction
                     continue;
                 }
 
-                int testDistance = Mathf.Abs(x) + Mathf.Abs(z);
-                if (testDistance > maxShootDistance)
-                {
-                    continue;
-                }
+
 
                 if (!LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition))
                 {
@@ -145,8 +139,8 @@ public class ShootAction : BaseAction
                 if (Physics.Raycast(
                         unitWorldPosition + Vector3.up * unitShoulderHeight,
                         shootDir,
-                        Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()),
-                        obstaclesLayerMask))
+                        Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition())
+                       ))
                 {
                     // Blocked by an Obstacle
                     continue;
@@ -161,7 +155,6 @@ public class ShootAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        ActionStart(onActionComplete);
 
         targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
 
@@ -170,6 +163,17 @@ public class ShootAction : BaseAction
         stateTimer = aimingStateTime;
 
         canShootBullet = true;
+
+        ActionStart(onActionComplete);
+    }
+
+    public Unit GetTargetUnit()
+    {
+        return targetUnit;
+    }
+    public int GetMaxShootDistance()
+    {
+        return maxShootDistance;
     }
 
 }

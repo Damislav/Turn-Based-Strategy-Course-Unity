@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     private BaseAction[] baseActionArray;
     private int actionPoints = ACTION_POINTS_MAX;
 
-    private bool isEnemy;
+    [SerializeField] private bool isEnemy;
 
     private void Awake()
     {
@@ -40,8 +40,11 @@ public class Unit : MonoBehaviour
         if (newGridPosition != gridPosition)
         {
             //Unit changed grid position
-            LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
+            GridPosition oldGridPosition = gridPosition;
             gridPosition = newGridPosition;
+
+            LevelGrid.Instance.UnitMovedGridPosition(this, oldGridPosition, newGridPosition);
+
         }
     }
 
@@ -58,6 +61,11 @@ public class Unit : MonoBehaviour
     public GridPosition GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public Vector3 GetWorldPosition()
+    {
+        return transform.position;
     }
 
     public BaseAction[] GetBaseActionArray()
@@ -128,9 +136,6 @@ public class Unit : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public Vector3 GetWorldPosition()
-    {
-        return transform.position;
-    }
+
 
 }

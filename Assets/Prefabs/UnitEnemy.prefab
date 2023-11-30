@@ -18,6 +18,31 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7d22fc6b9a431b043a917fb89a80bcfc, type: 2}
+    - target: {fileID: 2991420485527886020, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991420485527886020, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991420485527886020, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991420485527886020, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991420485527886020, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.123
+      objectReference: {fileID: 0}
     - target: {fileID: 3450856725759645224, guid: db27cfbf2609a2049afd758d4dfb0023,
         type: 3}
       propertyPath: m_IsActive
@@ -73,9 +98,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6352282176500405809, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      propertyPath: invert
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7718405323750517495, guid: db27cfbf2609a2049afd758d4dfb0023,
         type: 3}
       propertyPath: isEnemy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237635168033039134, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      propertyPath: invert
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9023808846117355318, guid: db27cfbf2609a2049afd758d4dfb0023,
@@ -83,8 +118,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnitEnemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8237635168033039134, guid: db27cfbf2609a2049afd758d4dfb0023, type: 3}
+    - {fileID: 6352282176500405809, guid: db27cfbf2609a2049afd758d4dfb0023, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9023808846117355318, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1198849867416140126}
+    - targetCorrespondingSourceObject: {fileID: 3847674619729145985, guid: db27cfbf2609a2049afd758d4dfb0023,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5555583884889055573}
   m_SourcePrefab: {fileID: 100100000, guid: db27cfbf2609a2049afd758d4dfb0023, type: 3}
+--- !u!1 &3850553785193899351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9023808846117355318, guid: db27cfbf2609a2049afd758d4dfb0023,
+    type: 3}
+  m_PrefabInstance: {fileID: 5212045832292833889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1198849867416140126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850553785193899351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8aa9c12aaac7604d8afc14fd892cf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &9021070417131170528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3847674619729145985, guid: db27cfbf2609a2049afd758d4dfb0023,
+    type: 3}
+  m_PrefabInstance: {fileID: 5212045832292833889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5555583884889055573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021070417131170528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e840fd299277c93429cc1177c62433f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invert: 1

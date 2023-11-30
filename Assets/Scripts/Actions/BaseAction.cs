@@ -5,6 +5,8 @@ using UnityEngine;
 //abstract does not let us make instance of this class
 public abstract class BaseAction : MonoBehaviour
 {
+
+
     public static event EventHandler OnAnyActionStarted;
     public static event EventHandler OnAnyActionCompleted;
 
