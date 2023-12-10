@@ -36,7 +36,7 @@ public class UnitWorldUI : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        Debug.Log(healthSystem.GetHealthNormalized());
+        // Debug.Log(healthSystem.GetHealthNormalized());
         healthBarImage.fillAmount = healthSystem.GetHealthNormalized();
     }
 

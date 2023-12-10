@@ -4,7 +4,6 @@ using UnityEngine;
 using Cinemachine;
 using System;
 
-
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private GameObject actionCameraGameObject;

@@ -30,8 +30,6 @@ public class TurnSystem : MonoBehaviour
         isPlayerTurn = !isPlayerTurn;
 
         OnTurnChanged?.Invoke(this, EventArgs.Empty);
-
-
     }
 
     public int GetTurnNumber()
