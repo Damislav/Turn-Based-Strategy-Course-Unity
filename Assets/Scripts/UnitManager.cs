@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
+
     public static UnitManager Instance { get; private set; }
 
-    [SerializeField] private List<Unit> unitList;
-    [SerializeField] private List<Unit> friendlyUnitList;
-    [SerializeField] private List<Unit> enemyUnitList;
 
-    void Awake()
+    private List<Unit> unitList;
+    private List<Unit> friendlyUnitList;
+    private List<Unit> enemyUnitList;
+
+
+    private void Awake()
     {
         if (Instance != null)
         {
-            Debug.LogError("Theres more than one UnitManager " + transform + " - " + Instance);
+            Debug.LogError("There's more than one UnitManager! " + transform + " - " + Instance);
             Destroy(gameObject);
             return;
         }
@@ -28,26 +31,21 @@ public class UnitManager : MonoBehaviour
 
     private void Start()
     {
-        Unit.OnAnyUnitSpawned += Unit_OnAnySpawned;
+        Unit.OnAnyUnitSpawned += Unit_OnAnyUnitSpawned;
         Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
     }
 
-    private void Unit_OnAnySpawned(object sender, EventArgs e)
+    private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
     {
         Unit unit = sender as Unit;
 
-        Debug.Log(unit + " spawned");
-
-        //add any unit to this list
         unitList.Add(unit);
+
         if (unit.IsEnemy())
         {
-            //if its enemy add to the enemy list
             enemyUnitList.Add(unit);
-        }
-        else
+        } else
         {
-            //else if its not add friendly unit to the friendly list
             friendlyUnitList.Add(unit);
         }
     }
@@ -56,18 +54,14 @@ public class UnitManager : MonoBehaviour
     {
         Unit unit = sender as Unit;
 
-        Debug.Log(unit + " unit died");
-
-        //add any unit to this list
         unitList.Remove(unit);
+
         if (unit.IsEnemy())
         {
-            //if its enemy add to the enemy list
             enemyUnitList.Remove(unit);
         }
         else
         {
-            //else if its not add friendly unit to the friendly list
             friendlyUnitList.Remove(unit);
         }
     }
@@ -86,6 +80,5 @@ public class UnitManager : MonoBehaviour
     {
         return enemyUnitList;
     }
-
 
 }

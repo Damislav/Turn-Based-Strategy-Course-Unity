@@ -1,32 +1,29 @@
 using System;
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TurnSystemUI : MonoBehaviour
 {
-    [SerializeField] private Button endTurnButton;
+
+    [SerializeField] private Button endTurnBtn;
     [SerializeField] private TextMeshProUGUI turnNumberText;
-    [SerializeField]
-    private GameObject enemyTurnVisualGameObject;
+    [SerializeField] private GameObject enemyTurnVisualGameObject;
 
     private void Start()
     {
-
-        //add listener to btn
-        endTurnButton.onClick.AddListener(() =>
+        endTurnBtn.onClick.AddListener(() =>
         {
             TurnSystem.Instance.NextTurn();
         });
 
-        //event 
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
 
-        //default turn number
         UpdateTurnText();
         UpdateEnemyTurnVisual();
         UpdateEndTurnButtonVisibility();
-
     }
 
     private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
@@ -38,9 +35,8 @@ public class TurnSystemUI : MonoBehaviour
 
     private void UpdateTurnText()
     {
-        turnNumberText.text = "TURN: " + TurnSystem.Instance.GetTurnNumber();
+        turnNumberText.text = "TURN " + TurnSystem.Instance.GetTurnNumber();
     }
-
 
     private void UpdateEnemyTurnVisual()
     {
@@ -49,9 +45,8 @@ public class TurnSystemUI : MonoBehaviour
 
     private void UpdateEndTurnButtonVisibility()
     {
-        //show if its player turns
-        endTurnButton.gameObject.SetActive(TurnSystem.Instance.IsPlayerTurn());
+        endTurnBtn.gameObject.SetActive(TurnSystem.Instance.IsPlayerTurn());
     }
 
-}
 
+}

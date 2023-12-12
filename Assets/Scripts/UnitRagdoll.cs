@@ -11,21 +11,19 @@ public class UnitRagdoll : MonoBehaviour
     {
         MatchAllChildTransforms(originalRootBone, ragdollRootBone);
 
-        //make dead enemy go bonk
         ApplyExplosionToRagdoll(ragdollRootBone, 300f, transform.position, 10f);
-
     }
+
     private void MatchAllChildTransforms(Transform root, Transform clone)
     {
-        //recursive function
         foreach (Transform child in root)
         {
             Transform cloneChild = clone.Find(child.name);
             if (cloneChild != null)
             {
                 cloneChild.position = child.position;
-
                 cloneChild.rotation = child.rotation;
+
                 MatchAllChildTransforms(child, cloneChild);
             }
         }
@@ -35,11 +33,13 @@ public class UnitRagdoll : MonoBehaviour
     {
         foreach (Transform child in root)
         {
-            if (root.TryGetComponent<Rigidbody>(out Rigidbody childRigidbody))
+            if (child.TryGetComponent<Rigidbody>(out Rigidbody childRigidbody))
             {
                 childRigidbody.AddExplosionForce(explosionForce, explosionPosition, explosionRange);
-            };
+            }
+
             ApplyExplosionToRagdoll(child, explosionForce, explosionPosition, explosionRange);
         }
     }
+
 }

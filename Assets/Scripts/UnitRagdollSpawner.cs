@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class UnitRagdollSpawner : MonoBehaviour
 {
+    
+
     [SerializeField] private Transform ragdollPrefab;
     [SerializeField] private Transform originalRootBone;
 
+
     private HealthSystem healthSystem;
 
-    void Awake()
+    private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
+
         healthSystem.OnDead += HealthSystem_OnDead;
     }
 
@@ -22,4 +26,6 @@ public class UnitRagdollSpawner : MonoBehaviour
         UnitRagdoll unitRagdoll = ragdollTransform.GetComponent<UnitRagdoll>();
         unitRagdoll.Setup(originalRootBone);
     }
+
+
 }

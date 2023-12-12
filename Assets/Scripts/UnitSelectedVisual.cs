@@ -1,9 +1,13 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitSelectedVisual : MonoBehaviour
 {
+
     [SerializeField] private Unit unit;
+
     private MeshRenderer meshRenderer;
 
     private void Awake()
@@ -13,17 +17,17 @@ public class UnitSelectedVisual : MonoBehaviour
 
     private void Start()
     {
-        UnitActionSystem.Instance.OnSelectedUnitChange += UnitActionSystem_OnSelectedUnitChange;
+        UnitActionSystem.Instance.OnSelectedUnitChanged += UnitActionSystem_OnSelectedUnitChanged;
 
         UpdateVisual();
     }
 
-    private void UnitActionSystem_OnSelectedUnitChange(object sender, EventArgs e)
+    private void UnitActionSystem_OnSelectedUnitChanged(object sender, EventArgs empty)
     {
         UpdateVisual();
     }
 
-    public void UpdateVisual()
+    private void UpdateVisual()
     {
         if (UnitActionSystem.Instance.GetSelectedUnit() == unit)
         {
@@ -34,9 +38,12 @@ public class UnitSelectedVisual : MonoBehaviour
             meshRenderer.enabled = false;
         }
     }
+
     private void OnDestroy()
     {
-        UnitActionSystem.Instance.OnSelectedUnitChange -= UnitActionSystem_OnSelectedUnitChange;
+        UnitActionSystem.Instance.OnSelectedUnitChanged -= UnitActionSystem_OnSelectedUnitChanged;
     }
+
+
 
 }

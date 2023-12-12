@@ -1,15 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PathNode
 {
+
     private GridPosition gridPosition;
     private int gCost;
     private int hCost;
     private int fCost;
     private PathNode cameFromPathNode;
+    private bool isWalkable = true;
 
     public PathNode(GridPosition gridPosition)
     {
@@ -18,7 +19,6 @@ public class PathNode
 
     public override string ToString()
     {
-
         return gridPosition.ToString();
     }
 
@@ -57,17 +57,29 @@ public class PathNode
         cameFromPathNode = null;
     }
 
-    public PathNode SetCameFromPathNode()
+    public void SetCameFromPathNode(PathNode pathNode)
     {
-        return cameFromPathNode;
+        cameFromPathNode = pathNode;
     }
+
     public PathNode GetCameFromPathNode()
     {
         return cameFromPathNode;
     }
+
     public GridPosition GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public bool IsWalkable()
+    {
+        return isWalkable;
+    }
+
+    public void SetIsWalkable(bool isWalkable)
+    {
+        this.isWalkable = isWalkable;
     }
 
 }

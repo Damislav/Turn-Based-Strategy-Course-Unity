@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
+
     [SerializeField] private bool invert;
 
-    private Transform cameraTranform;
+
+    private Transform cameraTransform;
+
 
     private void Awake()
     {
-        cameraTranform = Camera.main.transform;
+        cameraTransform = Camera.main.transform;
     }
 
     private void LateUpdate()
     {
         if (invert)
         {
-            Vector3 dirToCamera = (cameraTranform.position - transform.position).normalized;
+            Vector3 dirToCamera = (cameraTransform.position - transform.position).normalized;
             transform.LookAt(transform.position + dirToCamera * -1);
-        }
-        else
+        } else
         {
-            transform.LookAt(cameraTranform);
+            transform.LookAt(cameraTransform);
         }
-
     }
 }

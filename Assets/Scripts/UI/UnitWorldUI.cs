@@ -1,20 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using System;
 using UnityEngine.UI;
+using TMPro;
 
 public class UnitWorldUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI actionUnitText;
+
+    [SerializeField] private TextMeshProUGUI actionPointsText;
     [SerializeField] private Unit unit;
     [SerializeField] private Image healthBarImage;
     [SerializeField] private HealthSystem healthSystem;
 
     private void Start()
     {
-        //refreshes every unit UI-- wastefull
         Unit.OnAnyActionPointsChanged += Unit_OnAnyActionPointsChanged;
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
 
@@ -22,27 +22,24 @@ public class UnitWorldUI : MonoBehaviour
         UpdateHealthBar();
     }
 
+    private void UpdateActionPointsText()
+    {
+        actionPointsText.text = unit.GetActionPoints().ToString();
+    }
 
     private void Unit_OnAnyActionPointsChanged(object sender, EventArgs e)
     {
         UpdateActionPointsText();
-
-    }
-
-    private void UpdateActionPointsText()
-    {
-        actionUnitText.text = unit.GetActionPoints().ToString();
     }
 
     private void UpdateHealthBar()
     {
-        // Debug.Log(healthSystem.GetHealthNormalized());
         healthBarImage.fillAmount = healthSystem.GetHealthNormalized();
     }
 
     private void HealthSystem_OnDamaged(object sender, EventArgs e)
     {
         UpdateHealthBar();
-
     }
+
 }

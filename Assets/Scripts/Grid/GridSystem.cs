@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 public class GridSystem<TGridObject>
 {
     private int width;
@@ -7,7 +10,7 @@ public class GridSystem<TGridObject>
     private float cellSize;
     private TGridObject[,] gridObjectArray;
 
-    public GridSystem(int width, int height, float cellSize, Func<GridSystem<TGridObject>, GridPosition, TGridObject> createGridqObject)
+    public GridSystem(int width, int height, float cellSize, Func<GridSystem<TGridObject>, GridPosition, TGridObject> createGridObject)
     {
         this.width = width;
         this.height = height;
@@ -19,10 +22,8 @@ public class GridSystem<TGridObject>
         {
             for (int z = 0; z < height; z++)
             {
-                /* Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x, z) + Vector3.right * .2f, Color.white
-                 , 1000);*/
                 GridPosition gridPosition = new GridPosition(x, z);
-                gridObjectArray[x, z] = createGridqObject(this, gridPosition);
+                gridObjectArray[x, z] = createGridObject(this, gridPosition);
             }
         }
     }
@@ -35,8 +36,9 @@ public class GridSystem<TGridObject>
     public GridPosition GetGridPosition(Vector3 worldPosition)
     {
         return new GridPosition(
-           Mathf.RoundToInt(worldPosition.x / cellSize),
-           Mathf.RoundToInt(worldPosition.z / cellSize));
+            Mathf.RoundToInt(worldPosition.x / cellSize),
+            Mathf.RoundToInt(worldPosition.z / cellSize)
+        );
     }
 
     public void CreateDebugObjects(Transform debugPrefab)
@@ -52,7 +54,6 @@ public class GridSystem<TGridObject>
                 gridDebugObject.SetGridObject(GetGridObject(gridPosition));
             }
         }
-
     }
 
     public TGridObject GetGridObject(GridPosition gridPosition)
@@ -62,9 +63,9 @@ public class GridSystem<TGridObject>
 
     public bool IsValidGridPosition(GridPosition gridPosition)
     {
-        return gridPosition.x >= 0 &&
-                gridPosition.z >= 0 &&
-                gridPosition.x < width &&
+        return  gridPosition.x >= 0 && 
+                gridPosition.z >= 0 && 
+                gridPosition.x < width && 
                 gridPosition.z < height;
     }
 
@@ -77,5 +78,7 @@ public class GridSystem<TGridObject>
     {
         return height;
     }
-}
 
+
+
+}

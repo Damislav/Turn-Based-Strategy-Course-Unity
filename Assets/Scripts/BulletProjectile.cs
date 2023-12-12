@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
 {
+
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private Transform bulletHitVfxPrefab;
 
@@ -13,6 +14,7 @@ public class BulletProjectile : MonoBehaviour
     {
         this.targetPosition = targetPosition;
     }
+
     private void Update()
     {
         Vector3 moveDir = (targetPosition - transform.position).normalized;

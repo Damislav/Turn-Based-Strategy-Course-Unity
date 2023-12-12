@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class EnemyAI : MonoBehaviour
 {
 
@@ -11,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     {
         WaitingForEnemyTurn,
         TakingTurn,
-        Busy
+        Busy,
     }
 
     private State state;
@@ -29,7 +28,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        //if its players turn skip it
         if (TurnSystem.Instance.IsPlayerTurn())
         {
             return;
@@ -46,10 +44,9 @@ public class EnemyAI : MonoBehaviour
                     if (TryTakeEnemyAIAction(SetStateTakingTurn))
                     {
                         state = State.Busy;
-                    }
-                    else
+                    } else
                     {
-                        //no more enemies have action to take
+                        // No more enemies have actions they can take, end enemy turn
                         TurnSystem.Instance.NextTurn();
                     }
                 }
@@ -81,8 +78,9 @@ public class EnemyAI : MonoBehaviour
             if (TryTakeEnemyAIAction(enemyUnit, onEnemyAIActionComplete))
             {
                 return true;
-            };
+            }
         }
+
         return false;
     }
 
@@ -95,9 +93,10 @@ public class EnemyAI : MonoBehaviour
         {
             if (!enemyUnit.CanSpendActionPointsToTakeAction(baseAction))
             {
-                //enemy cannot afford this action
+                // Enemy cannot afford this action
                 continue;
             }
+
             if (bestEnemyAIAction == null)
             {
                 bestEnemyAIAction = baseAction.GetBestEnemyAIAction();
@@ -112,6 +111,7 @@ public class EnemyAI : MonoBehaviour
                     bestBaseAction = baseAction;
                 }
             }
+
         }
 
         if (bestEnemyAIAction != null && enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction))
