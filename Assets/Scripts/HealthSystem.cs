@@ -5,14 +5,11 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-
     public event EventHandler OnDead;
     public event EventHandler OnDamaged;
 
-
     [SerializeField] private int health = 100;
     private int healthMax;
-
 
     private void Awake()
     {
