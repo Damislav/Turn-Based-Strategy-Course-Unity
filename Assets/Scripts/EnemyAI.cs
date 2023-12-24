@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-
     private enum State
     {
         WaitingForEnemyTurn,
@@ -44,7 +43,8 @@ public class EnemyAI : MonoBehaviour
                     if (TryTakeEnemyAIAction(SetStateTakingTurn))
                     {
                         state = State.Busy;
-                    } else
+                    }
+                    else
                     {
                         // No more enemies have actions they can take, end enemy turn
                         TurnSystem.Instance.NextTurn();

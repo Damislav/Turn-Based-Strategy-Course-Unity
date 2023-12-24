@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class InteractAction : BaseAction
 {
+
     private int maxInteractDistance = 1;
+
 
     private void Update()
     {
@@ -47,13 +49,13 @@ public class InteractAction : BaseAction
                     continue;
                 }
 
-                Door door = LevelGrid.Instance.GetDoorAtGridPosition(testGridPosition);
-                if (door == null)
+                IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(testGridPosition);
+
+                if (interactable == null)
                 {
-                    //no door on this grid position
+                    // No Interactable on this GridPosition
                     continue;
                 }
-
                 validGridPositionList.Add(testGridPosition);
             }
         }
@@ -63,12 +65,16 @@ public class InteractAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        Door door = LevelGrid.Instance.GetDoorAtGridPosition(gridPosition);
-        door.Interact(OnInteractComplete);
+        IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(gridPosition);
+
+        interactable.Interact(OnInteractComplete);
+
         ActionStart(onActionComplete);
     }
+
     private void OnInteractComplete()
     {
         ActionComplete();
     }
+
 }
