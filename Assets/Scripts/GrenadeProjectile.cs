@@ -7,9 +7,11 @@ public class GrenadeProjectile : MonoBehaviour
 {
     public static event EventHandler OnAnyGrenadeExploded;
 
+
     [SerializeField] private Transform grenadeExplodeVfxPrefab;
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private AnimationCurve arcYAnimationCurve;
+
 
     private Vector3 targetPosition;
     private Action onGrenadeBehaviourComplete;

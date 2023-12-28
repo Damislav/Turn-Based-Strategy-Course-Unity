@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridObject
 {
+
     private GridSystem<GridObject> gridSystem;
     private GridPosition gridPosition;
     private List<Unit> unitList;
@@ -52,8 +53,7 @@ public class GridObject
         if (HasAnyUnit())
         {
             return unitList[0];
-        }
-        else
+        } else
         {
             return null;
         }
@@ -68,4 +68,10 @@ public class GridObject
     {
         this.interactable = interactable;
     }
+
+    public void ClearInteractable()
+    {
+        this.interactable = null;
+    }
+
 }

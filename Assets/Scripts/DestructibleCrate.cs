@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class DestructibleCrate : MonoBehaviour
 {
+
     public static event EventHandler OnAnyDestroyed;
 
-    [SerializeField] private Transform crateDestroyPrefab;
+    [SerializeField] private Transform crateDestroyedPrefab;
+
 
     private GridPosition gridPosition;
 
@@ -23,9 +25,9 @@ public class DestructibleCrate : MonoBehaviour
 
     public void Damage()
     {
-        Transform createDestroyTransform = Instantiate(crateDestroyPrefab, transform.position, transform.rotation);
+        Transform crateDestroyedTransform = Instantiate(crateDestroyedPrefab, transform.position, transform.rotation);
 
-        ApplyExplosionToChildren(createDestroyTransform, 150f, transform.position, 10f);
+        ApplyExplosionToChildren(crateDestroyedTransform, 150f, transform.position, 10f);
 
         Destroy(gameObject);
 

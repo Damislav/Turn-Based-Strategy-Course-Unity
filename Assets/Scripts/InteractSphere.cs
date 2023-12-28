@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InteractSphere : MonoBehaviour, IInteractable
 {
+
     [SerializeField] private Material greenMaterial;
     [SerializeField] private Material redMaterial;
     [SerializeField] private MeshRenderer meshRenderer;
@@ -29,7 +30,9 @@ public class InteractSphere : MonoBehaviour, IInteractable
         {
             return;
         }
+
         timer -= Time.deltaTime;
+
         if (timer <= 0f)
         {
             isActive = false;
@@ -53,14 +56,15 @@ public class InteractSphere : MonoBehaviour, IInteractable
     {
         this.onInteractionComplete = onInteractionComplete;
         isActive = true;
+        timer = .5f;
 
         if (isGreen)
         {
             SetColorRed();
-        }
-        else
+        } else
         {
             SetColorGreen();
         }
     }
+
 }

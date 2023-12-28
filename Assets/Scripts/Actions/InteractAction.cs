@@ -53,9 +53,10 @@ public class InteractAction : BaseAction
 
                 if (interactable == null)
                 {
-                    // No Interactable on this GridPosition
+                    // No interactable on this GridPosition
                     continue;
                 }
+
                 validGridPositionList.Add(testGridPosition);
             }
         }

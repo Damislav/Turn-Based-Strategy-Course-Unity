@@ -16,6 +16,8 @@ public class ShootAction : BaseAction
         public Unit shootingUnit;
     }
 
+
+
     private enum State
     {
         Aiming,
@@ -45,7 +47,7 @@ public class ShootAction : BaseAction
         {
             case State.Aiming:
                 Vector3 aimDir = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
-
+                
                 float rotateSpeed = 10f;
                 transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * rotateSpeed);
                 break;
@@ -93,15 +95,16 @@ public class ShootAction : BaseAction
             targetUnit = targetUnit,
             shootingUnit = unit
         });
-
-        OnShoot?.Invoke(this, new OnShootEventArgs
-        {
+        
+        OnShoot?.Invoke(this, new OnShootEventArgs {
             targetUnit = targetUnit,
             shootingUnit = unit
         });
-
+        
         targetUnit.Damage(40);
     }
+
+
 
     public override string GetActionName()
     {
@@ -197,7 +200,7 @@ public class ShootAction : BaseAction
     public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
     {
         Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
-
+        
         return new EnemyAIAction
         {
             gridPosition = gridPosition,

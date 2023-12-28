@@ -25,12 +25,11 @@ public class UnitAnimator : MonoBehaviour
         {
             shootAction.OnShoot += ShootAction_OnShoot;
         }
+
         if (TryGetComponent<SwordAction>(out SwordAction swordAction))
         {
             swordAction.OnSwordActionStarted += SwordAction_OnSwordActionStarted;
             swordAction.OnSwordActionCompleted += SwordAction_OnSwordActionCompleted;
-
-
         }
     }
 
@@ -50,7 +49,6 @@ public class UnitAnimator : MonoBehaviour
         animator.SetTrigger("SwordSlash");
     }
 
-
     private void MoveAction_OnStartMoving(object sender, EventArgs e)
     {
         animator.SetBool("IsWalking", true);
@@ -65,7 +63,7 @@ public class UnitAnimator : MonoBehaviour
     {
         animator.SetTrigger("Shoot");
 
-        Transform bulletProjectileTransform =
+        Transform bulletProjectileTransform = 
             Instantiate(bulletProjectilePrefab, shootPointTransform.position, Quaternion.identity);
 
         BulletProjectile bulletProjectile = bulletProjectileTransform.GetComponent<BulletProjectile>();
@@ -77,19 +75,16 @@ public class UnitAnimator : MonoBehaviour
         bulletProjectile.Setup(targetUnitShootAtPosition);
     }
 
-
-    public void EquipSword()
+    private void EquipSword()
     {
         swordTransform.gameObject.SetActive(true);
         rifleTransform.gameObject.SetActive(false);
     }
 
-    public void EquipRifle()
+    private void EquipRifle()
     {
         swordTransform.gameObject.SetActive(false);
         rifleTransform.gameObject.SetActive(true);
-
-
     }
 
 }

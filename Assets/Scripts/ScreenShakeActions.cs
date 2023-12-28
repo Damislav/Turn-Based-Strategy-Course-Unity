@@ -28,5 +28,5 @@ public class ScreenShakeActions : MonoBehaviour
     {
         ScreenShake.Instance.Shake();
     }
-
+    
 }

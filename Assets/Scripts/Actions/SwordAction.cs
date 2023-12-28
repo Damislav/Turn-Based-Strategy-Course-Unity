@@ -5,20 +5,24 @@ using UnityEngine;
 
 public class SwordAction : BaseAction
 {
+
     public static event EventHandler OnAnySwordHit;
+
+    public event EventHandler OnSwordActionStarted;
+    public event EventHandler OnSwordActionCompleted;
+
+
     private enum State
     {
         SwingingSwordBeforeHit,
-        SwingingSwordAfterHit
-
+        SwingingSwordAfterHit,
     }
-    public event EventHandler OnSwordActionStarted;
-    public event EventHandler OnSwordActionCompleted;
 
     private int maxSwordDistance = 1;
     private State state;
     private float stateTimer;
     private Unit targetUnit;
+
 
     private void Update()
     {
@@ -33,13 +37,14 @@ public class SwordAction : BaseAction
         {
             case State.SwingingSwordBeforeHit:
                 Vector3 aimDir = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
+
                 float rotateSpeed = 10f;
                 transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * rotateSpeed);
                 break;
             case State.SwingingSwordAfterHit:
                 break;
-
         }
+
         if (stateTimer <= 0f)
         {
             NextState();
@@ -74,7 +79,7 @@ public class SwordAction : BaseAction
         return new EnemyAIAction
         {
             gridPosition = gridPosition,
-            actionValue = 200
+            actionValue = 200,
         };
     }
 
@@ -126,13 +131,13 @@ public class SwordAction : BaseAction
         stateTimer = beforeHitStateTime;
 
         OnSwordActionStarted?.Invoke(this, EventArgs.Empty);
+
         ActionStart(onActionComplete);
     }
 
     public int GetMaxSwordDistance()
     {
         return maxSwordDistance;
-
     }
 
 }
