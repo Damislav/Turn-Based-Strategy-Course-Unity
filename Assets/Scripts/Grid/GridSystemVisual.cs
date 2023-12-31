@@ -56,7 +56,7 @@ public class GridSystemVisual : MonoBehaviour
             {
                 GridPosition gridPosition = new GridPosition(x, z);
 
-                Transform gridSystemVisualSingleTransform = 
+                Transform gridSystemVisualSingleTransform =
                     Instantiate(gridSystemVisualSinglePrefab, LevelGrid.Instance.GetWorldPosition(gridPosition), Quaternion.identity);
 
                 gridSystemVisualSingleArray[x, z] = gridSystemVisualSingleTransform.GetComponent<GridSystemVisualSingle>();
@@ -68,6 +68,7 @@ public class GridSystemVisual : MonoBehaviour
 
         UpdateGridVisual();
     }
+
 
     public void HideAllGridPosition()
     {

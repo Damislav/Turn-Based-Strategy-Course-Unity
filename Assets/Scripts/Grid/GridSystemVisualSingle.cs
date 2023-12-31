@@ -6,7 +6,7 @@ public class GridSystemVisualSingle : MonoBehaviour
 {
 
     [SerializeField] private MeshRenderer meshRenderer;
-
+    // [SerializeField] private GameObject selectedGameObject;
 
     public void Show(Material material)
     {
@@ -19,4 +19,13 @@ public class GridSystemVisualSingle : MonoBehaviour
         meshRenderer.enabled = false;
     }
 
+    public void ShowSelected()
+    {
+        // selectedGameObject.SetActive(true);
+    }
+
+    public void HideSelected()
+    {
+        // selectedGameObject.SetActive(false);
+    }
 }

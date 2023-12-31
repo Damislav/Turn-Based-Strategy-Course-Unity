@@ -1,6 +1,3 @@
-
-
-
 using System;
 
 public struct GridPosition : IEquatable<GridPosition>
@@ -57,3 +54,4 @@ public struct GridPosition : IEquatable<GridPosition>
     }
 
 }
+
